@@ -5,6 +5,7 @@
       <div class="p-4 w-1/2 h-auto border border-gray-400 rounded-sm shadow-sm mb-4" v-for="post in posts" :key="post.title">
         <h2 class="font-bold text-4xl text-center">{{post.title}}</h2>
         <p class="text-gray-600">{{post.body}}</p>
+        <a :href="post.link" target="_blank" class="text-myBlue-light">More info</a>
       </div>
     </div>
   </div>

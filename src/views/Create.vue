@@ -33,6 +33,10 @@
         <label class="text-lg font-bold block">Body</label>
         <textarea class="shadow-md rounded-md bg-gray-100 p-2 font-light" cols="auto" rows="auto" v-model="post.body"></textarea>
       </div>
+      <div>
+        <label class="text-left text-lg font-bold mb-2 block">Link</label>
+        <input class="shadow-md rounded-md bg-gray-100 p-2 mb-4 font-light" type="text" placeholder="Paste a link to the source of the info" v-model="post.link" />
+      </div>
         <button type="submit" class="bg-green-300 py-2 px-36 mt-6 rounded-md shadow-md tracking-wider hover:opacity-80 transition">Publish</button>
     </form>
   </div>
@@ -47,6 +51,7 @@ export default {
       post: {
         title: '',
         body: '',
+        link: '',
       }
     }
   },
