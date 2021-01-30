@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import userMod from '@/store/modules/userMod'
 import postMod from '@/store/modules/postMod'
-import { fb, auth, storage } from "@/firebase.js"
+import { auth } from "@/firebase.js"
 
 Vue.use(Vuex)
 

@@ -37,6 +37,10 @@
         <label class="text-lg font-bold block">Category</label>
         <input class="w-full shadow-md rounded-md bg-gray-100 p-2 mb-4 font-light" type="text" placeholder="Vue, Javascript, Css, Scss, Bootstrap, etc" v-model="postData.category" />
       </div>
+      <div class="mb-2">
+        <label class="text-lg font-bold block">Upload an image</label>
+        <input class="bg-gray-100 shadow-md rounded-md p-2 w-full" type="file" accept="image/" @change="saveImg($event)" />
+      </div>
       <div>
         <label class="text-left text-lg font-bold mb-2 block">Link</label>
         <input class="w-full shadow-md rounded-md bg-gray-100 p-2 mb-4 font-light" type="text" placeholder="Paste a link to the source of the info" v-model="postData.link" />
@@ -48,7 +52,8 @@
 
 <script>
 import { mapState } from 'vuex'
-
+import { storage } from '@/firebase.js'
+const ref = storage.ref();
 export default {
   name: 'Create',
   data() {
@@ -57,7 +62,8 @@ export default {
         title: '',
         body: '',
         link: '',
-        category: ''
+        category: '',
+        image: null
       },
       months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     }
@@ -82,6 +88,7 @@ export default {
             'category': this.postData.category,
             'displayName': this.user.displayName,
             'photoUrl': this.user.photoURL,
+            'image': this.postData.image.name,
             'created': {
               'day': date.getDate(),
               'month': this.months[date.getMonth()],
@@ -90,6 +97,7 @@ export default {
               'year': date.getFullYear(),
             }
           });
+          this.uploadImg();
         } catch (error) {
           console.log(error);
         } finally {
@@ -101,6 +109,15 @@ export default {
           })
         }
       }
+    },
+    saveImg(e) {
+      this.postData.image = e.target.files[0];
+    },
+    uploadImg() {
+      const refImg = ref.child('imagenes/'+this.postData.image.name)
+      const metaData = { contentType: 'img/jpeg' }
+      refImg.put(this.postData.image, metaData)
+      .then( e => console.log(e))
     }
   },
   computed: {
