@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="container mx-auto px-6 flex justify-between items-center pt-4 flex-col md:flex-row" v-if="!showLogin">
+  <div class="container mx-auto px-6 flex justify-between items-center pt-4 flex-col md:flex-row">
     <div class="sm:w-full md:w-1/2">
       <h1 class="text-center md:text-left text-4xl md:text-6xl lg:text-7xl leading-normal lg:leading-relaxed">
         The Best <br md:hidden> <span class="text-myBlue uppercase">dev</span> articles.

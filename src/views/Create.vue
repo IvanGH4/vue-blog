@@ -3,10 +3,10 @@
 
     <h2 class="text-center font-bold text-3xl my-4 tracking-wider">Create a new Post</h2>
 
-    <form class="flex justify-center items-center flex-col" @submit.prevent="addPost">
+    <form class="px-20 md:px-60" @submit.prevent="addPost"> <!--flex justify-center items-center flex-col -->
       <div>
         <label class="text-left text-lg font-bold mb-2 block">Title</label>
-        <input class="shadow-md rounded-md bg-gray-100 p-2 mb-4 font-light" type="text" v-model="post.title" />
+        <input class="shadow-md rounded-md bg-gray-100 p-2 mb-4 font-light w-full" type="text" v-model="postData.title" />
       </div>
       
 
@@ -29,36 +29,67 @@
           <input type="checkbox" />
         </div>
       </div> -->
-      <div>
+      <div class="mb-2">
         <label class="text-lg font-bold block">Body</label>
-        <textarea class="shadow-md rounded-md bg-gray-100 p-2 font-light" cols="auto" rows="auto" v-model="post.body"></textarea>
+        <textarea class="w-full shadow-md rounded-md bg-gray-100 p-2 font-light" cols="auto" rows="auto" v-model="postData.body"></textarea>
+      </div>
+      <div class="mb-2">
+        <label class="text-lg font-bold block">Category</label>
+        <input class="w-full shadow-md rounded-md bg-gray-100 p-2 mb-4 font-light" type="text" placeholder="Vue, Javascript, Css, Scss, Bootstrap, etc" v-model="postData.category" />
       </div>
       <div>
         <label class="text-left text-lg font-bold mb-2 block">Link</label>
-        <input class="shadow-md rounded-md bg-gray-100 p-2 mb-4 font-light" type="text" placeholder="Paste a link to the source of the info" v-model="post.link" />
+        <input class="w-full shadow-md rounded-md bg-gray-100 p-2 mb-4 font-light" type="text" placeholder="Paste a link to the source of the info" v-model="postData.link" />
       </div>
-        <button type="submit" class="bg-green-300 py-2 px-36 mt-6 rounded-md shadow-md tracking-wider hover:opacity-80 transition">Publish</button>
+        <button type="submit" class="w-full bg-green-300 py-2 mt-6 rounded-md shadow-md tracking-wider hover:opacity-80 transition">Publish</button>
     </form>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
   name: 'Create',
   data() {
     return {
-      post: {
+      postData: {
         title: '',
         body: '',
         link: '',
-      }
+        category: ''
+      },
+      months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     }
   },
   methods: {
     async addPost() {
+      if(!this.user) {
+        this.$toasted.show('Please login first', {
+          type: 'danger',
+          fullWidth: true,
+          duration: 2000,
+          position: 'bottom-center'
+        })
+      }
+      if(this.user) {
         try {
-          await this.$store.dispatch("postMod/setPost", this.post);
+          const date = new Date();
+          await this.$store.dispatch("postMod/setPost", {
+            'title': this.postData.title,
+            'body': this.postData.body,
+            'link': this.postData.link,
+            'category': this.postData.category,
+            'displayName': this.user.displayName,
+            'photoUrl': this.user.photoURL,
+            'created': {
+              'day': date.getDate(),
+              'month': this.months[date.getMonth()],
+              'hour': date.getHours(),
+              'minute': date.getMinutes(),
+              'year': date.getFullYear(),
+            }
+          });
         } catch (error) {
           console.log(error);
         } finally {
@@ -69,7 +100,13 @@ export default {
             position: 'bottom-center'
           })
         }
+      }
     }
   },
+  computed: {
+    ...mapState('userMod', {
+      user: state => state.user
+    }),
+  }
 }
 </script>
