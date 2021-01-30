@@ -97,7 +97,7 @@ export default {
               'year': date.getFullYear(),
             }
           });
-          this.uploadImg();
+          await this.uploadImg();
         } catch (error) {
           console.log(error);
         } finally {
@@ -118,6 +118,9 @@ export default {
       const metaData = { contentType: 'img/jpeg' }
       refImg.put(this.postData.image, metaData)
       .then( e => console.log(e))
+      .then(() => {
+        this.$store.dispatch('postMod/getPosts');
+      })
     }
   },
   computed: {

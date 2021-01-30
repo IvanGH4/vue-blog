@@ -1,12 +1,12 @@
 <template>
 <div>
   <div class="container mx-auto px-6 flex justify-between items-center pt-4 flex-col md:flex-row">
-    <div class="sm:w-full md:w-1/2">
+    <div class="sm:w-full md:w-1/2 py-4">
       <h1 class="text-center md:text-left text-4xl md:text-6xl lg:text-7xl leading-normal lg:leading-relaxed">
         The Best <br md:hidden> <span class="text-myBlue uppercase">dev</span> articles.
       </h1>
       <div class="flex items-center mt-4">
-        <img class="w-10" src="@/assets/imgs/three.svg" alt="arrows" />
+        <img class="w-7 md:w-10" src="@/assets/imgs/three.svg" alt="arrows" />
         <p class="text-myDark-light text-2xl ml-4">
           Create, learn, share
         </p>
@@ -17,8 +17,8 @@
         </router-link>
       </div>
     </div>
-    <div class="flex justify-end">
-      <img class="sm:w-1/4 md:w-2/3 object-cover" src="@/assets/imgs/hero.svg" alt="hero" />
+    <div class="flex justify-center md:justify-end mt-6 md:mt-0 w-full md:w-1/2">
+      <img class="w-1/2 md:w-2/3 object-cover" src="@/assets/imgs/hero.svg" alt="hero" />
     </div>
   </div>
 </div>
