@@ -6,6 +6,9 @@
 
       <div class="p-4 w-full md:w-1/2 h-auto border border-gray-400 rounded-sm shadow-md mb-4 relative" v-for="(post, idx) in filteredPosts" :key="idx">
         <h2 class="font-bold text-4xl text-center mb-4">{{post.title}}</h2>
+        <div class="flex justify-center">
+          <img class="w-1/4 rounded-md" :src="post.imageUrl" alt="#" />
+        </div>
         <span class="absolute top-0 right-0 px-4 bg-myBlue-light text-white font-bold tracking-wider rounded-bl-xl">{{post.category}}</span>
         <p class="text-gray-600 mb-2">{{post.body}}</p>
         <a :href="post.link" target="_blank" class="text-sm text-myBlue-light">More info</a>
@@ -20,11 +23,6 @@
             </small>
           </div>
         </div>
-        <button @click="chargeImg(post.image)">Show Image</button>
-        <div>
-          <img :src="images[idx]" alt="#" />
-        </div>
-        <!-- {{images[idx]}} -->
 
       </div>
 
@@ -34,50 +32,40 @@
 
 <script>
 import { mapState } from 'vuex';
-import { storage } from '@/firebase.js'
-const ref = storage.ref();
+// import { storage } from '@/firebase.js'
+// const ref = storage.ref();
 
 export default {
   name: 'Posts',
   data() {
     return {
       searchTerm: '',
-      images: [],
-      img: null,
       // filtered: [],
     }
   },
   async mounted() {
-    if(this.posts) {
-      try {
-        await this.$store.dispatch('postMod/getPosts');
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    await this.$store.dispatch('postMod/getPosts');
   },  
   methods: {
-    chargeImg(n) {
-      // ref.child('imagenes/')
-      //   .listAll()
-      //   .then((res) => {
-      //       console.log(res);
-      //       res._delegate.items.map((item) => {
-      //           ref.child(item._location.path_)
-      //           .getDownloadURL()
-      //           .then((url) => {
-      //               this.images.push(url);
-      //               console.log(this.images);
-      //           })
-      //       })
-      //   })
-      ref.child((`imagenes/${n}`)).getDownloadURL()
-        .then((url) => {
-            this.images.push(url)
-            // console.log(url);
-            // console.log(this.images);
-        })
-    },
+    // chargeImg(n) {
+    //   // ref.child('imagenes/')
+    //   //   .listAll()
+    //   //   .then((res) => {
+    //   //       console.log(res);
+    //   //       res._delegate.items.map((item) => {
+    //   //           ref.child(item._location.path_)
+    //   //           .getDownloadURL()
+    //   //           .then((url) => {
+    //   //               this.images.push(url);
+    //   //               console.log(this.images);
+    //   //           })
+    //   //       })
+    //   //   })
+    //   ref.child((`imagenes/${n}`)).getDownloadURL()
+    //     .then((url) => {
+    //         this.images.push(`{${n}: ${url}}`)
+    //     })
+    // },
   }, 
   computed: {
     filteredPosts() {
