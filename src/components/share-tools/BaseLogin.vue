@@ -10,7 +10,7 @@
                 Start creating posts!
             </router-link>
         </div>
-        <img class="absolute bottom-0" src="@/assets/imgs/vector.svg" alt="#" />
+        <img class="absolute bottom-0" src="@/assets/imgs/wave.svg" alt="#" />
     </div>
 </template>
 

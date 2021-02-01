@@ -8,27 +8,6 @@
         <label class="text-left text-lg font-bold mb-2 block">Title</label>
         <input class="shadow-md rounded-md bg-gray-100 p-2 mb-4 font-light w-full" type="text" v-model="postData.title" />
       </div>
-      
-
-      <!-- <div>
-        <label class="text-left text-lg font-bold mb-2">Category</label>
-        <div class="flex items-center">
-          <small class="mr-2 font-light">Vue</small>
-          <input type="checkbox" />
-        </div>
-        <div class="flex items-center">
-          <small class="mr-2 font-light">JavaScript</small>
-          <input type="checkbox" />
-        </div>
-        <div class="flex items-center">
-          <small class="mr-2 font-light">CSS</small>
-          <input type="checkbox" />
-        </div>
-        <div class="flex items-center">
-          <small class="mr-2 font-light">Other</small>
-          <input type="checkbox" />
-        </div>
-      </div> -->
       <div class="mb-2">
         <label class="text-lg font-bold block">Body</label>
         <textarea class="w-full shadow-md rounded-md bg-gray-100 p-2 font-light" cols="auto" rows="auto" v-model="postData.body"></textarea>
