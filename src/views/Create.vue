@@ -18,7 +18,7 @@
       </div>
       <div class="mb-2">
         <label class="text-lg font-bold block">Upload an image</label>
-        <input class="bg-gray-100 shadow-md rounded-md p-2 w-full" type="file" accept="image/" @change="saveImg($event)" />
+        <input class="bg-gray-100 shadow-md rounded-md p-2 w-full" type="file" accept="image/png, image/jpeg" @change="saveImg($event)" />
       </div>
       <div>
         <label class="text-left text-lg font-bold mb-2 block">Link</label>
