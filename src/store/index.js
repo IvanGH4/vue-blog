@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import userMod from '@/store/modules/userMod'
 import postMod from '@/store/modules/postMod'
+import singlePostMod from '@/store/modules/singlePostMod'
 import { auth } from "@/firebase.js"
 
 Vue.use(Vuex)
@@ -20,7 +21,8 @@ const store =  new Vuex.Store({
   },
   modules: {
     userMod,
-    postMod
+    postMod,
+    singlePostMod
   }
 })
 
