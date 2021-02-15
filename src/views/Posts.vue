@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="flex justify-end">
-          <button class="py-2 px-4 bg-myBlue-light text-white rounded-lg hover:opacity-80 transition duration-300" @click="setPost({title: post.title, body: post.body, image: post.imageUrl, user: post.displayName, userPic: post.photoUrl, category: post.category})">Read</button>
+          <button class="py-2 px-4 bg-myBlue-light text-white rounded-lg hover:opacity-80 transition duration-300" @click="setPost({title: post.title, body: post.body, image: post.imageUrl, user: post.displayName, userPic: post.photoUrl, category: post.category, link: post.link})">Read</button>
         </div>
       </router-link>
         <!-- <h2 class="font-bold text-3xl text-center mb-4">{{post.title}}</h2>
