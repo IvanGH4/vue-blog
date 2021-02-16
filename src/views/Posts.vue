@@ -4,10 +4,9 @@
       <h2 class="font-bold text-4xl text-myDark-light my-6 tracking-widest">Articles</h2>
       <input type="text" @change="filteredPosts" class="shadow-inner rounded-xl px-4 py-2  mb-2" placeholder="Search by category" v-model="searchTerm" />
 
-      <div class="p-4 w-full md:w-1/2 h-auto border border-gray-400 rounded-sm shadow-md mb-4 relative" v-for="(post, idx) in filteredPosts" :key="idx">
+      <div class="p-4 w-full md:w-1/2 h-auto border border-gray-400 rounded-sm shadow-md mb-6 relative" v-for="(post, idx) in filteredPosts" :key="idx">
       <span class="absolute top-0 right-0 px-4 bg-myBlue-light text-white font-bold tracking-wider rounded-bl-xl">{{post.category}}</span>
-      <router-link to="/post">
-        <div class="flex justify-between items-center">
+        <div class="flex flex-col md:flex-row justify-between items-center">
           <img class="w-full md:w-20 rounded-md" :src="post.imageUrl" alt="#" v-if="!loading" />
           <h2 class="text-xl font-semibold ml-5">{{post.title}}</h2>
           <div class="flex justify-end items-end">
@@ -16,9 +15,10 @@
           </div>
         </div>
         <div class="flex justify-end">
-          <button class="py-2 px-4 bg-myBlue-light text-white rounded-lg hover:opacity-80 transition duration-300" @click="setPost({title: post.title, body: post.body, image: post.imageUrl, user: post.displayName, userPic: post.photoUrl, category: post.category, link: post.link})">Read</button>
+        <router-link to="/post" class="w-full">
+            <button class="w-full mt-4 py-2 bg-myBlue-light text-white rounded-lg hover:opacity-80 transition duration-300" @click="setPost({title: post.title, body: post.body, image: post.imageUrl, user: post.displayName, userPic: post.photoUrl, category: post.category, link: post.link})">Read</button>
+        </router-link>
         </div>
-      </router-link>
         <!-- <h2 class="font-bold text-3xl text-center mb-4">{{post.title}}</h2>
         <div class="flex justify-center" v-if="post.imageUrl.length > 0">
           <div class="spinner w-12 h-12 rounded-full border-2 border-dashed border-green-500" v-if="loading"></div>

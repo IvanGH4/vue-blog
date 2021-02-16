@@ -1,5 +1,8 @@
 <template>
 <div class="container mx-auto px-6">
+    <router-link to="/posts">
+        <i class="fas fa-arrow-alt-circle-left text-4xl text-myBlue"></i>
+    </router-link>
     <div class="flex justify-center items-center">
         <div class="p-8 w-full md:w-1/2 h-auto border border-gray-400 rounded-sm shadow-md mt-4 relative" v-for="item in info" :key="item.user">
             <h2 class="font-bold text-3xl text-center mb-4">{{item.title}}</h2>
